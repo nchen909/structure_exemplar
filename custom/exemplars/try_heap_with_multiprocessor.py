@@ -1,6 +1,6 @@
 '''
 # -*- coding: utf-8 -*-
-Author: nchen
+nchen
 FilePath: /rethinking_code/custom/exemplars/try_heap_with_multiprocessor.py
 '''
 import heapq

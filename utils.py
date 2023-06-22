@@ -1,6 +1,6 @@
 '''
 # -*- coding: utf-8 -*-
-Author: nchen
+nchen
 FilePath: /rethinking_code/utils.py
 '''
 import json
@@ -28,7 +28,6 @@ import networkx as nx
 import sys
 logger = logging.getLogger(__name__)
 from custom.disturb.disturb import Disturb
-from custom.attack.attack import TextualAttack, StructuralAttack
 from custom.exemplars.exemplar import Exemplar
 def get_tflops(model,input_):
     from thop import profile
@@ -449,28 +448,7 @@ def load_and_cache_gen_data(args, filename, pool, tokenizer, split_tag, only_src
     examples = read_examples(filename, -1, args.task)
     print('examples[0]:')
     print(examples[0].target if args.task=='generate' else examples[0].source)
-    if args.adversarial_strategy!= 'none':
-        if args.adversarial_strategy== 'funcname':
-            attack = TextualAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
-        else:
-            attack = StructuralAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
-    if split_tag =='test' and args.attack_strategy!= 'none':
-        if args.attack_strategy== 'funcname':
-            attack = TextualAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
-        else:
-            attack = StructuralAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
+
     if split_tag =='train' and args.disturb_strategy!= 'none':
         disturb = Disturb(args,examples)
         examples=disturb.process_examples()
@@ -956,28 +934,7 @@ def load_and_cache_clone_data(args, filename, pool, tokenizer, split_tag, is_sam
 
     print('examples[0]:')
     print(examples[0].source)
-    if args.adversarial_strategy!= 'none':
-        if args.adversarial_strategy== 'funcname':
-            attack = TextualAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
-        else:
-            attack = StructuralAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
-    if split_tag =='test' and args.attack_strategy!= 'none':
-        if args.attack_strategy== 'funcname':
-            attack = TextualAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
-        else:
-            attack = StructuralAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
+
     if split_tag =='train' and args.disturb_strategy!= 'none':
         disturb = Disturb(args,examples)
         examples=disturb.process_examples()
@@ -1038,28 +995,7 @@ def load_and_cache_defect_data(args, filename, pool, tokenizer, split_tag, is_sa
     
     print('examples[0]:')
     print(examples[0].source)
-    if args.adversarial_strategy!= 'none':
-        if args.adversarial_strategy== 'funcname':
-            attack = TextualAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
-        else:
-            attack = StructuralAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
-    if split_tag =='test' and args.attack_strategy!= 'none':
-        if args.attack_strategy== 'funcname':
-            attack = TextualAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
-        else:
-            attack = StructuralAttack(args,examples)
-            examples=attack.process_examples()
-            print('attacked examples[0]:')
-            print(examples[0].target if args.task=='generate' else examples[0].source)
+
     if split_tag =='train' and args.disturb_strategy!= 'none':
         disturb = Disturb(args,examples)
         examples=disturb.process_examples()

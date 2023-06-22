@@ -141,8 +141,7 @@ def add_args(parser):
     parser.add_argument("--logits_dir", default='custom/calibration/scripts/logits/logits.p', type=str,
                         help="directory to store logits")
     
-    parser.add_argument("--attack_strategy", default='none', type=str,
-                    help="how to attack (on test dataset)",choices=['none','bfs','dfs','subtree','funcname'])
+
 
     parser.add_argument("--adversarial_strategy", default='none', type=str,
                     help="how to adversarial training",choices=['none','bfs','dfs','subtree','funcname'])
